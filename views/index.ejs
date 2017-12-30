@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Select your character's name from the list below:</p>
+
+    <% characters.forEach(function(character) { %>
+       <p><%= character.name %></p>
+    <% }) %>
+
+  </body>
+</html>
