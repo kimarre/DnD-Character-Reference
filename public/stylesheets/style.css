@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.character-container {
+   display: flex;
+   margin-top: 30px;
+}
+
+.character-name, .new-character {
+   color: black;
+   flex: 0 1 auto;
+   border: 1px solid #d6d6d6;
+   border-radius: 4px;
+   padding: 18px 22px;
+   cursor: pointer;
+   text-decoration: none;
+}
+
+.new-character {
+   display: inline-block;
+   margin-top: 30px;
+   padding: 13px 15px;
+}
+

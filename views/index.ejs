@@ -8,9 +8,13 @@
     <h1><%= title %></h1>
     <p>Select your character's name from the list below:</p>
 
-    <% characters.forEach(function(character) { %>
-       <p><%= character.name %></p>
-    <% }) %>
+    <div class="character-container">
+       <% characters.forEach(function(character) { %>
+          <a href="/character/<%= character.name %>" class="character-name"><%= character.name %></a>
+       <% }) %>
+    </div>
+
+    <div class="new-character">+ New Character</div>
 
   </body>
 </html>
