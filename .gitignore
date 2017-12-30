@@ -1,3 +1,6 @@
 *.swp
+views/*.swp
+routes/*.swp
+public/*.swp
 dnd.db
 node_modules/*
