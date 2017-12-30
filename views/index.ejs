@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Select your character's name from the list below:</p>
+   <head>
+     <title><%= title %></title>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+   </head>
+   <body>
+     <h1><%= title %></h1>
+     <p>Select your character's name from the list below:</p>
 
-    <div class="character-container">
-       <% characters.forEach(function(character) { %>
-          <a href="/character/<%= character.name %>" class="character-name"><%= character.name %></a>
-       <% }) %>
-    </div>
+     <div class="character-container">
+        <% characters.forEach(function(character) { %>
+           <a href="/character/<%= character.name %>" class="character-name"><%= character.name %></a>
+        <% }) %>
+     </div>
 
-    <div class="new-character">+ New Character</div>
+     <a href="/create-new" class="new-character-button">+ New Character</a>
 
-  </body>
+   </body>
 </html>

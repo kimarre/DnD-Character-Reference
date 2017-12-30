@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+   </head>
+   <body>
+
+      <h1 class="character-creation-header">New Character Creation</h1>
+
+      <div class="input-fields">
+         <% inputLabels.forEach(function(labelName) { %>
+            <div class="input-pair">
+               <div class="input-label"><%= labelName %></div>
+               <input type="text" value=""></input>
+            </div>
+         <% }) %>
+      </div>
+
+      <div class="button">Submit</div>
+
+   </body>
+</html>

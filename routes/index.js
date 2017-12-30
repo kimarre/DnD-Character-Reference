@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
             characters: rows
          });
       });
-
    });
 
    db.close();
