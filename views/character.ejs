@@ -13,11 +13,13 @@
 
       <h2>Abilities</h2>
 
-      <div>
+      <ul class="abilities-list">
          <% abilities.forEach(function(ability) { %>
-            <h3><%= ability.ability_name %></h3>
+            <li><%= ability.ability_name %></li>
             <p><%= ability.description %></p>
          <% }) %>
-      </div>
+      </ul>
+
+      <a href="/new-ability" class="new-ability-link">+ New Ability</a>
    </body>
 </html>
