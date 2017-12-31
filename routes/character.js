@@ -1,20 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var sqlite3 = require('sqlite3').verbose();
+var sqlite = require('sqlite');
+
+var dbPromise = sqlite.open('dnd.db');
 
 /* GET users listing. */
-router.get('/:name', function(req, res, next) {
-   var db = new sqlite3.Database('dnd.db');
+router.get('/:name', async function(req, res, next) {
+   try {
+      const db = await dbPromise;
+      const [character, abilities] = await Promise.all([
+         db.get("SELECT * FROM characters WHERE name = ?", req.params.name),
+         db.all("SELECT * FROM abilities WHERE character_name = ?", req.params.name)
+      ]);
 
-   db.serialize(function() {
-      db.get("SELECT * from characters WHERE name = ?", req.params.name, function(err, row) {
-         res.render('character', {
-            character: row
-         });
+      if(!character) {
+         var err = new Error(`Character ${req.params.name} not found`);
+         err.status = 404;
+         next(err);
+      }
+
+      res.render('character', {
+         character: character,
+         abilities: abilities
       });
-   });
+   } catch (err) {
+      next(err);
+   }
 
-   db.close();
 });
 
 module.exports = router;

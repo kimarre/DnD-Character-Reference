@@ -11,5 +11,13 @@
       <p>Class: <%= character["class"] %></p>
       <p>Race: <%= character.race %></p>
 
+      <h2>Abilities</h2>
+
+      <div>
+         <% abilities.forEach(function(ability) { %>
+            <h3><%= ability.ability_name %></h3>
+            <p><%= ability.description %></p>
+         <% }) %>
+      </div>
    </body>
 </html>

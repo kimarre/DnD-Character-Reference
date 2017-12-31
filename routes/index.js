@@ -1,21 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var sqlite3 = require('sqlite3').verbose();
+var sqlite = require('sqlite');
+
+var dbPromise = sqlite.open('dnd.db');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-   var db = new sqlite3.Database('dnd.db');
+router.get('/', async function(req, res, next) {
+   try {
+      const db = await dbPromise;
+      const characters = await db.all("SELECT name FROM characters ORDER BY name ASC");
 
-   db.serialize(function() {
-      db.all("SELECT name FROM characters ORDER BY name ASC", function(err, rows) {
-         res.render('index', {
-            title: "Super Dungeons and Dragbois 2k18",
-            characters: rows
-         });
+      res.render('index', {
+         title: "Super Dungeons and Dragbois 2k18",
+         characters: characters
       });
-   });
-
-   db.close();
+   } catch (err) {
+      next(err);
+   }
 });
 
 module.exports = router;

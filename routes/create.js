@@ -1,24 +1,29 @@
 var express = require('express');
 var router = express.Router();
-var sqlite3 = require('sqlite3').verbose();
+var sqlite = require('sqlite');
 
-var db = new sqlite3.Database('dnd.db');
+var dbPromise = sqlite.open('dnd.db');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
    res.render('create', {
       inputLabels: ["name", "class", "race"]
    });
 
 });
 
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
    var body = req.body;
 
-   db.run("INSERT INTO characters (name, class, race) VALUES (?, ?, ?)",
-   body.name, body["class"], body.race);
+   try {
+      const db = await dbPromise;
 
-   res.redirect('/character/' + body.name);
+      await db.run("INSERT INTO characters (name, class, race) VALUES (?, ?, ?)",
+       body.name, body["class"], body.race);
+   } catch (err) {
+      next(err);
+   }
+
    res.end();
 });
 
