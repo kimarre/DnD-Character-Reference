@@ -39,6 +39,8 @@
             'class': inputs['class'].value,
             race: inputs.race.value,
          })
+      }).then(function() {
+         window.location = '/character/' + inputs.name.value;
       });
    });
 </script>
