@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
    var db = new sqlite3.Database('dnd.db');
 
    db.serialize(function() {
-      db.all("SELECT name FROM characters", function(err, rows) {
+      db.all("SELECT name FROM characters ORDER BY name ASC", function(err, rows) {
          res.render('index', {
             title: "Super Dungeons and Dragbois 2k18",
             characters: rows
