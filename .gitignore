@@ -1,6 +1,4 @@
 *.swp
-views/*.swp
-routes/*.swp
-public/*.swp
+[._]*.sw[a-p]
 dnd.db
 node_modules/*
