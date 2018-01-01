@@ -26,7 +26,29 @@ router.get('/:name', async function(req, res, next) {
    } catch (err) {
       next(err);
    }
-
 });
+
+router.get('/:name/new-ability', async function(req, res, next) {
+   res.render('new-ability', {
+      inputLabels: ["name", "description"],
+      characterName: req.params.name
+   });
+});
+
+router.post('/:name/new-ability', async function(req, res) {
+   var body = req.body;
+
+   try {
+      const db = await dbPromise;
+
+      await db.run("INSERT INTO abilities (character_name, ability_name, description) VALUES (?, ?, ?)",
+       body.character_name, body.ability_name, body.description);
+   } catch (err) {
+      next(err);
+   }
+
+   res.end();
+});
+
 
 module.exports = router;

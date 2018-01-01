@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+   </head>
+   <body>
+      <a href='/' class="back-link">< Back</a>
+      <h1>New Character Ability</h1>
+
+      <form class="input-fields">
+         <% inputLabels.forEach(function(labelName) { %>
+            <div class="input-pair">
+               <div class="input-label"><%= labelName %></div>
+               <input type="text" name="<%= labelName %>"></input>
+            </div>
+         <% }) %>
+
+         <input type="hidden" name="character_name" value="<%= characterName %>">
+
+         <input type="submit" class="button"></input>
+      </form>
+   </body>
+</html>
+
+<script>
+   var abilitiesForm = document.querySelector("form");
+
+   abilitiesForm.addEventListener("submit", function(formEvent) {
+      formEvent.preventDefault();
+
+      var inputs = formEvent.target.elements;
+
+      header = new Headers({
+         "Content-Type": "application/json"
+      });
+
+      fetch('', {
+         headers: header,
+         method: 'POST',
+         body: JSON.stringify({
+            character_name: inputs.character_name.value,
+            ability_name: inputs.name.value,
+            description: inputs.description.value,
+         })
+      }).then(function() {
+         window.location = '/character/' + inputs.character_name.value;
+      });
+   });
+</script>
