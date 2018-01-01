@@ -8,12 +8,15 @@
       <h1>New Character Ability</h1>
 
       <form class="input-fields">
-         <% inputLabels.forEach(function(labelName) { %>
-            <div class="input-pair">
-               <div class="input-label"><%= labelName %></div>
-               <input type="text" name="<%= labelName %>"></input>
-            </div>
-         <% }) %>
+         <div class="input-pair">
+            <div class="input-label">name</div>
+            <input type="text" name="name"></input>
+         </div>
+
+         <div class="input-pair">
+            <div class="input-label">description</div>
+            <textarea name="description"></textarea>
+         </div>
 
          <input type="hidden" name="character_name" value="<%= characterName %>">
 

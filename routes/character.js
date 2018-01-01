@@ -30,7 +30,6 @@ router.get('/:name', async function(req, res, next) {
 
 router.get('/:name/new-ability', async function(req, res, next) {
    res.render('new-ability', {
-      inputLabels: ["name", "description"],
       characterName: req.params.name
    });
 });
